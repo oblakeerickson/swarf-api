@@ -7,7 +7,7 @@ class ListsController < ApplicationController
 
   def create
     @list = List.create!(list_params)
-    render json: @list, status: :ok
+    render json: @list, status: :created
   end
 
   def show
@@ -18,13 +18,13 @@ class ListsController < ApplicationController
   def update
     @list = List.find(params[:id])
     @list.update(list_params)
-    render json: @list, status: :ok
+    head :no_content
   end
 
   def destroy
     @list = List.find(params[:id])
     @list.destroy
-    render status: :ok
+    head :no_content
   end
 
   private
