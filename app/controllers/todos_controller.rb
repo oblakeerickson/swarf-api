@@ -2,7 +2,8 @@ class TodosController < ApplicationController
 
   def index
     @list = List.find(params[:list_id])
-    render json: @list.todos, status: :ok
+    @todos = @list.todos.where(done: [false, nil])
+    render json: @todos, status: :ok
   end
 
   def show
